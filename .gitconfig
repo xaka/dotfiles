@@ -1,0 +1,25 @@
+[color]
+	ui = true
+
+[grep]
+	lineNumber = true
+
+[push]
+	default = simple
+
+[branch]
+	autosetuprebase = always
+
+[filter "media"]
+	clean = git-media-clean %f
+	smudge = git-media-smudge %f
+
+[credential]
+	helper = osxkeychain
+
+[core]
+	editor = vim
+
+# Use separate file for username / github token / etc
+[include]
+	path = ~/.gitconfig.local

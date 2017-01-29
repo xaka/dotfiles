@@ -1,0 +1,19 @@
+#!/usr/bin/env bash
+
+branches_to_die=$(git branch --no-color --merged origin/master | grep -v '\smaster$')
+echo "Local branches to be deleted:"
+echo "$branches_to_die"
+
+kill_branches () {
+  echo $branches_to_die | xargs -n 1 git branch -d
+}
+
+echo ""
+echo "Enter Y to confirm"
+read -p "> " confirm
+
+[[ $confirm == "Y" ]] && kill_branches
+
+echo ""
+echo "Pruning all remotes"
+git remote | xargs -n 1 git remote prune
